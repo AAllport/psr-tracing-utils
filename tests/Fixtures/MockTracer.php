@@ -11,7 +11,6 @@ class MockTracer implements TracerInterface
 
     /** @var Closure(string):SpanInterface $cbCreateSpan */
     private Closure $cbCreateSpan;
-    private SpanInterface $currentSpan;
 
     public function __construct(callable $cbCreateSpan = null)
     {
@@ -21,8 +20,8 @@ class MockTracer implements TracerInterface
 
     public function createSpan(string $spanName): SpanInterface
     {
-        $this->currentSpan = ($this->cbCreateSpan)($spanName);
-        return $this->currentSpan;
+        $currentSpan = ($this->cbCreateSpan)($spanName);
+        return $currentSpan;
     }
 
     public function getCurrentTraceId(): string

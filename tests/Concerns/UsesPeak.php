@@ -1,6 +1,7 @@
 <?php
 
-namespace Psr\TracingUtilsTests;
+namespace Psr\TracingUtilsTests\Concerns;
+
 
 use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
