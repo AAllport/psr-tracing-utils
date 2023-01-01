@@ -20,12 +20,11 @@ class MockTracer implements TracerInterface
 
     public function createSpan(string $spanName): SpanInterface
     {
-        $currentSpan = ($this->cbCreateSpan)($spanName);
-        return $currentSpan;
+        return ($this->cbCreateSpan)($spanName);
     }
 
     public function getCurrentTraceId(): string
     {
-        // TODO: Implement getCurrentTraceId() method.
+        return "MOCK-TRACE-ID";
     }
 }
