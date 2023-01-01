@@ -34,7 +34,8 @@ class TracingUtils
         try {
             return $callable();
         } catch (Throwable $e) {
-            $span->addException($e);
+            $span->setStatus(SpanInterface::STATUS_ERROR,null)
+                ->addException($e);
             throw $e;
         } finally {
             $span->finish();

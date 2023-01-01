@@ -4,6 +4,7 @@ namespace Psr\TracingUtilsTests;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
+use Psr\Tracing\SpanInterface;
 use Psr\TracingUtils\StackTracer\TracingUtils;
 use Psr\TracingUtilsTests\Concerns\UsesMockTracing;
 
@@ -35,11 +36,18 @@ class TracingUtilsTest extends TestCase
         $exception = new Exception("foo");
 
         $span->expects($this->once())
-            ->method('start');
+            ->method('start')
+            ->willReturnSelf();
+
+        $span->expects($this->once())
+            ->method('setStatus')
+            ->with(SpanInterface::STATUS_ERROR)
+            ->willReturnSelf();
 
         $span->expects($this->once())
             ->method('addException')
-            ->with($exception);
+            ->with($exception)
+            ->willReturnSelf();
 
         $span->expects($this->once())
             ->method('finish');

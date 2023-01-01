@@ -68,7 +68,7 @@ class StackSpan implements SpanInterface
         return $this;
     }
 
-    public function setStatus(int $status, ?string $description): SpanInterface
+    public function setStatus(int $status, ?string $description = null): SpanInterface
     {
         foreach ($this->spans as $span) {
             $span->setStatus($status, $description);
