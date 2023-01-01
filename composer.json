@@ -1,0 +1,32 @@
+{
+  "name": "psr/tracing-utils",
+  "description": "Utils for the common interface for tracing libraries",
+  "type": "library",
+  "require": {
+    "psr/tracing": "dev-main"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
+  },
+  "scripts": {
+    "test": "phpunit tests"
+  },
+  "autoload": {
+    "psr-4": {
+      "Psr\\TracingUtils\\": "src",
+      "Psr\\TracingUtilsTests\\": "tests"
+    }
+  },
+  "repositories": [
+    {
+      "type": "github",
+      "url": "https://github.com/AAllport/psr-tracing"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Adam Allport",
+      "email": "adam@allport.me.uk"
+    }
+  ]
+}
