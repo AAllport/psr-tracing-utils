@@ -9,6 +9,9 @@ class StackTracer implements TracerInterface
 {
     private array $stack = [];
 
+    private ?StackSpan $root = null;
+    private ?StackSpan $current = null;
+
     public function pushTracer(TracerInterface $tracer): StackTracer
     {
         $this->stack[] = $tracer;
@@ -28,5 +31,24 @@ class StackTracer implements TracerInterface
     public function getCurrentTraceId(): string
     {
         return $this->stack[0]->getCurrentTraceId() ?? "STACK-SPAN";
+    }
+
+    public function getRootSpan(): ?SpanInterface
+    {
+        return $this->root;
+    }
+
+    public function getCurrentSpan(): ?SpanInterface
+    {
+        return $this->current;
+    }
+
+    public function setRootSpan(StackSpan $span): void
+    {
+        $this->root = $span;
+    }
+    public function setCurrentSpan(StackSpan $span): void
+    {
+        $this->current = $span;
     }
 }
